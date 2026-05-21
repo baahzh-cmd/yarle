@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>YARLE Web Converter</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero">
+        <div>
+          <p class="eyebrow">Browser prototype</p>
+          <h1>YARLE Web Converter</h1>
+          <p class="lede">
+            Convert Evernote ENEX exports to Markdown in your browser. Files stay local;
+            the page does not upload notes to a server.
+          </p>
+        </div>
+        <div class="privacy-note">
+          <strong>Local only</strong>
+          <span>Runs with File, Blob, and optional File System Access APIs.</span>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <h2>Select ENEX files</h2>
+            <p>Choose one or more exported Evernote notebooks.</p>
+          </div>
+          <label class="file-picker">
+            <input id="enexFiles" type="file" accept=".enex,.xml,text/xml,application/xml" multiple>
+            <span>Choose files</span>
+          </label>
+        </div>
+
+        <div id="fileList" class="file-list" aria-live="polite"></div>
+
+        <div class="options-grid">
+          <label>
+            Target dialect
+            <select id="targetDialect">
+              <option value="standard">Standard Markdown</option>
+              <option value="obsidian">Obsidian friendly</option>
+            </select>
+          </label>
+          <label>
+            Metadata
+            <select id="metadataMode">
+              <option value="frontmatter">YAML front matter</option>
+              <option value="none">No metadata</option>
+            </select>
+          </label>
+          <label class="checkbox">
+            <input id="skipWebClips" type="checkbox" checked>
+            <span>Skip web clips</span>
+          </label>
+          <label class="checkbox">
+            <input id="includeTags" type="checkbox" checked>
+            <span>Include tags</span>
+          </label>
+        </div>
+
+        <div class="actions">
+          <button id="convertButton" type="button">Convert</button>
+          <button id="copyButton" type="button" disabled>Copy combined Markdown</button>
+          <button id="downloadButton" type="button" disabled>Download Markdown files</button>
+          <button id="saveDirectoryButton" type="button" disabled>Save to directory</button>
+        </div>
+      </section>
+
+      <section class="split">
+        <div class="panel">
+          <h2>Conversion log</h2>
+          <pre id="logOutput" class="log-output">Waiting for files...</pre>
+        </div>
+        <div class="panel">
+          <h2>Preview</h2>
+          <div id="preview" class="preview empty">Converted notes will appear here.</div>
+        </div>
+      </section>
+
+      <section class="panel limitations">
+        <h2>Prototype scope</h2>
+        <ul>
+          <li>Supports text notes, common ENML tags, tags, created/updated dates, and source URLs.</li>
+          <li>Attachments are listed as placeholders because browsers cannot reconstruct Evernote resources without additional export handling.</li>
+          <li>Use the desktop or CLI app for full-fidelity conversion until the browser converter reaches parity.</li>
+        </ul>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
