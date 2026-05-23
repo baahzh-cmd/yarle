@@ -113,6 +113,21 @@ Just open a terminal, specify config options in a config file (options detailed 
 npx -p yarle-evernote-to-md@latest yarle --configFile <path_to_your_file e.g. ./config.json>
 ```
 
+## Browser web prototype
+
+YARLE also includes an experimental browser-only converter in `src/web`.
+It reads `.enex` files locally with the browser File API and converts text
+notes to Markdown without uploading your notes to a server.
+
+Run it locally from the repository root:
+
+```sh
+python3 -m http.server 8080 --directory src/web
+```
+
+Then open `http://localhost:8080`. See [WEB_APP.md](WEB_APP.md) for the
+current scope and limitations.
+
 ## Yarle intro and usage videos on Youtube:
 <a href="https://www.youtube.com/watch?v=EPMkm5zRIts">How to migrate notes from Evernote to Obsidian (using Yarle)</a><br>
 <a href="https://www.youtube.com/watch?v=gZxMz67uYHg">YARLE: A lifeline to escape from Evernote</a>
